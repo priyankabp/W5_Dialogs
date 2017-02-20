@@ -18,16 +18,17 @@
         android:text="Hello World!" />
 
     <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show ALERT"
+        android:onClick="showDate"/>
+
+    <Button
         android:id="@+id/btn_date_ma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Show DATE"
         android:onClick="showDate"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show ALERT"
-        android:onClick="showDate"/>
 
 </LinearLayout>

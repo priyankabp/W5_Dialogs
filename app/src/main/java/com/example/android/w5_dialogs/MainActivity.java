@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -16,9 +18,11 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_date_ma) Button dateBtn;
-    @BindView(R.id.MA_textView)
+    //show date in textview
+    @BindView(R.id.MA_textView) TextView textView;
+    @BindView(R.id.activity_main) LinearLayout rootlayout;
 
-    TextView textView;
+    int numOfViews = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,19 @@ public class MainActivity extends AppCompatActivity {
         // copied from https://github.com/JakeWharton/butterknife
         ButterKnife.bind(this);
         dateBtn.setOnClickListener(new MyLsntr());
+
+        ScrollView scrollView = new ScrollView(this);
+        LinearLayout subLayer = new LinearLayout(this);
+        subLayer.setOrientation(LinearLayout.VERTICAL);
+        for(int i=0;i<=numOfViews;i++){
+            Button btn = new Button(this);
+            btn.setText("Btn "+ i);
+            btn.setWidth(20);
+            btn.setHeight(10);
+            subLayer.addView(btn);
+        }
+        scrollView.addView(subLayer);
+        rootlayout.addView(scrollView);
     }
 
     class MyLsntr implements View.OnClickListener {
@@ -37,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                            textView.setText(""+ year);
+                            //show date in textView
+                            textView.setText(""+ year +"/"+month+"/"+day);
                         }
                     },2016, 0, 0);
             datePickerDialog.show();
