@@ -8,19 +8,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.btn_date_ma)
-    Button dateBtn;
+    @BindView(R.id.btn_date_ma) Button dateBtn;
+    @BindView(R.id.MA_textView)
+
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         // copied from https://github.com/JakeWharton/butterknife
         ButterKnife.bind(this);
         dateBtn.setOnClickListener(new MyLsntr());
@@ -32,12 +36,11 @@ public class MainActivity extends AppCompatActivity {
             DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this,
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
-                        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-
+                        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                            textView.setText(""+ year);
                         }
-                    }, 0, 0, 0);
+                    },2016, 0, 0);
             datePickerDialog.show();
-
         }
     }
 

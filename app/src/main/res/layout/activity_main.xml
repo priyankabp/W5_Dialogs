@@ -12,6 +12,7 @@
     tools:context="com.example.android.w5_dialogs.MainActivity">
 
     <TextView
+        android:id="@+id/MA_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
@@ -20,13 +21,13 @@
         android:id="@+id/btn_date_ma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show date"
+        android:text="Show DATE"
         android:onClick="showDate"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show text"
+        android:text="Show ALERT"
         android:onClick="showDate"/>
 
 </LinearLayout>
