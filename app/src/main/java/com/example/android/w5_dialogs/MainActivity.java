@@ -2,6 +2,7 @@ package com.example.android.w5_dialogs;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,10 +18,15 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.btn_date_ma) Button dateBtn;
+    Configuration configuration;
+
+    @BindView(R.id.btn_date_ma)
+    Button dateBtn;
     //show date in textview
-    @BindView(R.id.MA_textView) TextView textView;
-    @BindView(R.id.activity_main) LinearLayout rootlayout;
+    @BindView(R.id.MA_textView)
+    TextView textView;
+    @BindView(R.id.activity_main)
+    LinearLayout rootlayout;
 
     int numOfViews = 10;
 
@@ -31,14 +37,21 @@ public class MainActivity extends AppCompatActivity {
 
         // copied from https://github.com/JakeWharton/butterknife
         ButterKnife.bind(this);
+        configuration = getResources().getConfiguration();
+
         dateBtn.setOnClickListener(new MyLsntr());
 
         ScrollView scrollView = new ScrollView(this);
         LinearLayout subLayer = new LinearLayout(this);
-        subLayer.setOrientation(LinearLayout.VERTICAL);
-        for(int i=0;i<=numOfViews;i++){
+
+        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
+            subLayer.setOrientation(LinearLayout.HORIZONTAL);
+        else
+            subLayer.setOrientation(LinearLayout.VERTICAL);
+
+        for (int i = 0; i <= numOfViews; i++) {
             Button btn = new Button(this);
-            btn.setText("Btn "+ i);
+            btn.setText("Btn " + i);
             btn.setWidth(20);
             btn.setHeight(10);
             subLayer.addView(btn);
@@ -55,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                             //show date in textView
-                            textView.setText(""+ year +"/"+month+"/"+day);
+                            textView.setText("" + year + "/" + month + "/" + day);
                         }
-                    },2016, 0, 0);
+                    }, 2016, 0, 0);
             datePickerDialog.show();
         }
     }
