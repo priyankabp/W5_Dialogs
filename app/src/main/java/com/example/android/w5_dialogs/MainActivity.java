@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // copied from https://github.com/JakeWharton/butterknife
+        // it does the binding
         ButterKnife.bind(this);
         configuration = getResources().getConfiguration();
 
